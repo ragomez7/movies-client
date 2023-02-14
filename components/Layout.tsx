@@ -5,7 +5,7 @@ interface LayoutProps {
 }
 const Layout: FC<LayoutProps> = ({children}) => {
     return (
-        <div className="grid grid-cols-[minmax(300px,_auto)_300px_300px] h-full">
+        <div className="grid grid-cols-[minmax(800px,_auto)_800px] grid-rows-[3fr_2fr] h-full">
             {children}
         </div>
     )
