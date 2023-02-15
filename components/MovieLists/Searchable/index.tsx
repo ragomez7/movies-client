@@ -1,14 +1,12 @@
 import { FC, useState, useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { MovieFromQuery, MoviesContext } from '@/pages';
+import { IMovie, MovieFromQuery, MoviesContext } from 'components/Flixify';
 import { GET_MOVIES_FROM_SEARCH } from 'graphql/queries';
 import MovieList from '../MovieList';
+import { processMovie } from '../../../util';
 
-export interface MovieListsProps {
-    latestReleases: MovieFromQuery[];
-}
 const SearchableList: FC = () => {
-    const [searchedMovies, setSearchedMovies] = useState<Array<MovieFromQuery>>([])
+    const [searchedMovies, setSearchedMovies] = useState<Array<IMovie>>([])
     const [searchTerm, setSearchTerm] = useState<string>("");
     const { nowPlayingMovies } = useContext(MoviesContext);
     useQuery(GET_MOVIES_FROM_SEARCH,
@@ -17,7 +15,8 @@ const SearchableList: FC = () => {
                 term: searchTerm
             },
             onCompleted: (data) => {
-                setSearchedMovies(data?.searchMovie);
+                const searchedMovies: IMovie[] = data?.searchMovie.map((movie: MovieFromQuery) => processMovie(movie));;
+                setSearchedMovies(searchedMovies);
             }
         }
     )

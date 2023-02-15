@@ -54,7 +54,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
             const videoResults: Array<VideoQueryResultInterface> = data.movieDetail.videos.results
             const videoResultsArray = videoResults.map((video) => video.key)
             console.log(videoResultsArray[0])
-            videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : undefined;
+            videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : setVideoId(undefined);
         },
         onError: (err) => {
             console.log(err)

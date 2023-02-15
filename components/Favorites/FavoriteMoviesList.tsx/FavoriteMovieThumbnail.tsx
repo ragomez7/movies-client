@@ -2,11 +2,13 @@ import React, { FC, useContext, useState } from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import Tooltip from '@mui/material/Tooltip';
-import { MoviesContext } from '@/pages';
-import { IFavoriteMovie } from '@/pages';
+import { MoviesContext } from 'components/Flixify';
 
-
-const FavoriteMovieThumbnail: FC<IFavoriteMovie> = ({ thumbnailPath, movieId }) => {
+interface FavoriteMovieThumbnailProps {
+    posterPath: string;
+    movieId: number;
+}
+const FavoriteMovieThumbnail: FC<FavoriteMovieThumbnailProps> = ({ posterPath, movieId }) => {
     const { setActiveMovie, imagePath, favoriteMovies, setFavoriteMovies } = useContext(MoviesContext);
     const [hover, setHover] = useState<boolean>(false);
     const handleMouseEnter = () => {
@@ -17,7 +19,7 @@ const FavoriteMovieThumbnail: FC<IFavoriteMovie> = ({ thumbnailPath, movieId }) 
         setHover(false);
     };
     const handleRemoveFromFavoritesOnClick = (e: React.SyntheticEvent) => {
-        const filteredFavoriteMovies = favoriteMovies.filter((movie) => movie.movieId !== movieId);
+        const filteredFavoriteMovies = favoriteMovies.filter((movie) => movie.id !== movieId);
         setFavoriteMovies(filteredFavoriteMovies);
         setActiveMovie(0);
         e.stopPropagation();
@@ -32,7 +34,7 @@ const FavoriteMovieThumbnail: FC<IFavoriteMovie> = ({ thumbnailPath, movieId }) 
         >
             <img 
                 className={`w-[134px] h-[200px] ${hover ? "opacity-20" : undefined}`}
-                src={`${imagePath}${thumbnailPath}`}
+                src={`${imagePath}${posterPath}`}
                 alt="Movie thumbnail"
             />
             {hover ?

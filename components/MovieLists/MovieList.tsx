@@ -1,11 +1,11 @@
-import { MovieFromQuery } from '@/pages';
+import { IMovie } from '@/pages';
 import React, { FC } from 'react';
 import { v4 as uuid} from 'uuid';
 import InListMovieThumbnail from 'components/MovieLists/InListMovieThumbnail';
 
 
 interface MovieListProps {
-    movieArray: Array<MovieFromQuery>
+    movieArray: Array<IMovie>
 }
 
 const MovieList: FC<MovieListProps> = ({ movieArray }) => {
@@ -15,7 +15,7 @@ const MovieList: FC<MovieListProps> = ({ movieArray }) => {
                 <InListMovieThumbnail 
                     key={uuid()}
                     movieId={movie.id} 
-                    posterPath={movie.poster_path} 
+                    posterPath={movie.posterPath} 
                 />
             )) : undefined}
         </div>

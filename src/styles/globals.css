@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
 @tailwind base;
 
 :root {
@@ -23,7 +26,9 @@
 @tailwind utilities;
 
 @layer base {
-  html,
+  html {
+    font-family: Montserrat
+  }
   body,
   #__next {
     @apply h-screen;

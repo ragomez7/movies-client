@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { SvgIcon } from '@mui/material';
-import { MoviesContext } from '@/pages';
+import { IMovie, MoviesContext } from 'components/Flixify';
 
 interface AddToFavoritesButtonProps {
     posterPath: string;
@@ -10,11 +10,11 @@ interface AddToFavoritesButtonProps {
 const AddToFavoritesButton: FC<AddToFavoritesButtonProps> = ({ posterPath, movieId }) => {
     const { favoriteMovies, setFavoriteMovies } = useContext(MoviesContext);
     const handleButtonOnClick = () => {
-        const thisMovie = {
-            thumbnailPath: posterPath,
-            movieId
+        const thisMovie: IMovie = {
+            id: movieId,
+            posterPath
         };
-        const isMovieAlreadyInFavorites = favoriteMovies.find((movie) => movie.movieId === movieId);
+        const isMovieAlreadyInFavorites = favoriteMovies.find((movie) => movie.id === movieId);
         if (!isMovieAlreadyInFavorites) {
             setFavoriteMovies([...favoriteMovies, thisMovie])
         }

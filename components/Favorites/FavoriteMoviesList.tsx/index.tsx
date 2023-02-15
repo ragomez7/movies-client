@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { v4 as uuid } from 'uuid';
-import { MoviesContext } from '@/pages';
+import { MoviesContext } from 'components/Flixify';
 import FavoriteMovieThumbnail from './FavoriteMovieThumbnail';
 
 const FavoriteMoviesList: FC = () => {
@@ -11,8 +11,8 @@ const FavoriteMoviesList: FC = () => {
                 favoriteMovies.map((movie) => (
                     <FavoriteMovieThumbnail
                         key={uuid()}
-                        thumbnailPath={movie.thumbnailPath}
-                        movieId={movie.movieId}
+                        posterPath={movie.posterPath}
+                        movieId={movie.id}
                     />
                 )) :
                 undefined
