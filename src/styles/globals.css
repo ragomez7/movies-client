@@ -27,7 +27,7 @@
 
 @layer base {
   html {
-    font-family: Montserrat
+    font-family: Montserrat;
   }
   body,
   #__next {
