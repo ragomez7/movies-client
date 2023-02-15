@@ -1,123 +1,92 @@
-import { FC, useState } from 'react';
-import { useQuery, gql } from '@apollo/client'
-import StarIcon from '@mui/icons-material/Star';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { SvgIcon } from '@mui/material';
-import Youtube, { YouTubeProps } from 'react-youtube'
+import { FC, useState, createContext } from 'react';
+import { useQuery } from '@apollo/client'
+import AddToFavoritesButton from './AddToFavoritesButton';
+import MovieRating from './MovieRating';
+import MovieInfo from './MovieInfo';
+import MovieOverview from './MovieOverview';
+import MovieMedia from './MovieMedia';
+import { GET_MOVIE_DETAILS } from 'graphql/queries';
 interface MovieDetailsProps {
     activeMovie?: number
 }
 
+interface IMovieDetails {
+    poster_path: string
+    backdrop_path: string
+    title: string
+    overview: string;
+    release_date: string
+    runtime: string;
+    vote_average: number;
+}
+interface MovieDetailsContextInterface {
+    posterPath: string;
+    videoId: string;
+}
 
+interface VideoQueryResultInterface {
+    key: string;
+    name?: string;
+}
+export const MovieDetailsContext = createContext<MovieDetailsContextInterface>({
+    posterPath: "",
+    videoId: "",
+})
 const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
-    const [movieDetails, setMovieDetails] = useState({});
-    const [imagePath, setImagePath] = useState<string>("");
+    const [movieDetails, setMovieDetails] = useState<IMovieDetails>({
+        poster_path: "",
+        backdrop_path: "",
+        title: "",
+        overview: "",
+        release_date: "",
+        runtime: "",
+        vote_average: 0
+    });
+    const [posterPath, setPosterPath] = useState<string>("");
     const [videoId, setVideoId] = useState<string>("");
-    const { data } = useQuery(gql`
-        query GetMovieDetails($id: Int!) {
-            movieDetail(id: $id) {
-                poster_path
-                backdrop_path
-                title
-                overview
-                release_date
-                runtime
-                vote_average
-                production_companies {
-                    id
-                    name
-                    logo_path
-                    origin_country
-                }
-                videos {
-                    results {
-                        id
-                        # iso
-                        key
-                        name
-                        site
-                        type
-                    }
-                }
-            }
-            configurations {
-                images {
-                    base_url
-                    poster_sizes
-                }
-            }
-        }
-    `, {
+    useQuery(GET_MOVIE_DETAILS, {
         variables: {
             id: activeMovie
         },
         onCompleted: (data) => {
             setMovieDetails(data.movieDetail)
-            setImagePath(`${data.configurations.images.base_url}/w342`)
-            const videoResultsArray = data.movieDetail.videos.results.filter((video) => video.type === "Trailer")
-            console.log(videoResultsArray[0].key)
-            videoResultsArray[0] ? setVideoId(videoResultsArray[0].key) : undefined;
-
-            // console.log(videoResultsArray)
+            setPosterPath(data.movieDetail.poster_path);
+            const videoResults: Array<VideoQueryResultInterface> = data.movieDetail.videos.results
+            const videoResultsArray = videoResults.map((video) => video.key)
+            console.log(videoResultsArray[0])
+            videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : undefined;
         },
         onError: (err) => {
             console.log(err)
         }
     })
-
-    const videoOpts = {
-        height: "347px",
-        width: "100%",
-        playerVars: {
-            origin: `http://localhost:3000/`
-        }
+    const movieDetailsContextObject = {
+        posterPath,
+        videoId
     }
-
-    const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-        // access to player in all event handlers via event.target
-        event.target.pauseVideo();
-    }
-
     return (
-        <div className="row-span-1 p-3">
-            <div className='grid grid-cols-[1fr_1fr]'>
-                <div>
-                    <p className="text-2xl">
-                        {movieDetails?.title}
-                    </p>
-                    <div className="flex w-1/2 justify-around">
-                        <p>{movieDetails?.release_date}</p>
-                        <p>{movieDetails?.runtime}</p>
-                    </div>
-                </div>
-                <div className="flex items-center justify-center w-full">
-                    <div className="flex items-center">
-                        <SvgIcon className="text-[#38D16F] w-[28px] h-[28px]">
-                            // className="text-[#f5cc29]">
-                            <TrendingUpIcon />
-                        </SvgIcon>
-                        <p className="text-2xl">
-                            {`${Math.round((movieDetails?.vote_average) * 10) / 10} / 10`}
-                        </p>
-                    </div>
-                    <button className="ml-3 text-sm h-full flex flex-col items-center" >
-                        <p>Add To Favorites</p>
-                        <SvgIcon className="text-[#f5cc29] w-[28px] h-[28px] ">
-                            <StarIcon />
-                        </SvgIcon>
-                    </button>
-                </div>
+        <MovieDetailsContext.Provider value={movieDetailsContextObject} >
+            <div className="row-span-1 p-3">
+                {activeMovie ?
+                    <>
+                        <div className='grid grid-cols-[1fr_1fr]'>
+                            <MovieInfo
+                                title={movieDetails?.title}
+                                releaseDate={movieDetails?.release_date}
+                                runtime={movieDetails?.runtime}
+                            />
+                            <div className="flex items-center justify-center w-full">
+                                <MovieRating voteAverage={movieDetails?.vote_average} />
+                                <AddToFavoritesButton posterPath={movieDetails?.poster_path} movieId={activeMovie} />
+                            </div>
+                        </div>
+                        <div className="mt-3">
+                            <MovieMedia />
+                            <MovieOverview overview={movieDetails?.overview} />
+                        </div>
+                    </> : undefined}
             </div>
-            <div>
-                <div className="grid grid-cols-[230px_auto]">
-                    <img className="w-[231px] h-[347px]"
-                        src={`${imagePath}${movieDetails?.poster_path}`}
-                    />
-                    <Youtube videoId={videoId} opts={videoOpts} onReady={onPlayerReady} />
-                </div>
-                <p className="text-sm">{movieDetails?.overview}</p>
-            </div>
-        </div>
+        </MovieDetailsContext.Provider>
     )
 };
 
