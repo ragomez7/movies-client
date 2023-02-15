@@ -1,6 +1,8 @@
 import React, { FC, useContext } from 'react'
+
 import StarIcon from '@mui/icons-material/Star'
 import { SvgIcon } from '@mui/material'
+
 import { IMovie, MoviesContext } from 'components/Flixify'
 
 interface AddToFavoritesButtonProps {

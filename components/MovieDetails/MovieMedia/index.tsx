@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import MovieYoutubeTrailer from './MovieYoutubeTrailer'
+
 import MovieThumbnail from './MovieThumbnail'
+import MovieYoutubeTrailer from './MovieYoutubeTrailer'
 
 const MovieMedia: FC = () => {
   return (

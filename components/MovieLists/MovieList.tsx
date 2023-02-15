@@ -1,6 +1,8 @@
-import { IMovie } from '@/pages'
 import React, { FC } from 'react'
+
 import { v4 as uuid } from 'uuid'
+
+import { IMovie } from 'components/Flixify'
 import InListMovieThumbnail from 'components/MovieLists/InListMovieThumbnail'
 
 interface MovieListProps {

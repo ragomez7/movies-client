@@ -1,6 +1,9 @@
 import React, { FC, useContext } from 'react'
+
 import { v4 as uuid } from 'uuid'
+
 import { MoviesContext } from 'components/Flixify'
+
 import FavoriteMovieThumbnail from './FavoriteMovieThumbnail'
 
 const FavoriteMoviesList: FC = () => {

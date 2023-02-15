@@ -1,5 +1,7 @@
 import React, { FC, useContext, useState } from 'react'
+
 import Image from 'next/image'
+
 import { MoviesContext } from 'components/Flixify'
 
 interface InListMovieThumbnailProps {

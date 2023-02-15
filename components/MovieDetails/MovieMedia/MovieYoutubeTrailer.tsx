@@ -1,6 +1,8 @@
 import React, { FC, useContext, useEffect } from 'react'
+
 import Youtube, { YouTubeProps } from 'react-youtube'
 import { v4 as uuid } from 'uuid'
+
 import { MovieDetailsContext } from '..'
 
 const MovieYoutubeTrailer: FC = () => {

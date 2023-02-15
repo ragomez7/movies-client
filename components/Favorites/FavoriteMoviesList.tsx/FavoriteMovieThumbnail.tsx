@@ -1,7 +1,9 @@
 import React, { FC, useContext, useState } from 'react'
-import SvgIcon from '@mui/material/SvgIcon'
+
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
+import SvgIcon from '@mui/material/SvgIcon'
 import Tooltip from '@mui/material/Tooltip'
+
 import { MoviesContext } from 'components/Flixify'
 
 interface FavoriteMovieThumbnailProps {

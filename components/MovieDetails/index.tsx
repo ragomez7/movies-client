@@ -1,11 +1,14 @@
-import { FC, useState, createContext } from 'react'
+import { createContext, FC, useState } from 'react'
+
 import { useQuery } from '@apollo/client'
-import AddToFavoritesButton from './AddToFavoritesButton'
-import MovieRating from './MovieRating'
-import MovieInfo from './MovieInfo'
-import MovieOverview from './MovieOverview'
-import MovieMedia from './MovieMedia'
+
 import { GET_MOVIE_DETAILS } from 'graphql/queries'
+
+import AddToFavoritesButton from './AddToFavoritesButton'
+import MovieInfo from './MovieInfo'
+import MovieMedia from './MovieMedia'
+import MovieOverview from './MovieOverview'
+import MovieRating from './MovieRating'
 interface MovieDetailsProps {
   activeMovie?: number
 }
@@ -57,7 +60,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
       console.log(videoResultsArray[0])
       videoResultsArray[0]
         ? setVideoId(videoResultsArray[0])
-        : setVideoId(undefined)
+        : setVideoId("")
     },
     onError: (err) => {
       console.log(err)

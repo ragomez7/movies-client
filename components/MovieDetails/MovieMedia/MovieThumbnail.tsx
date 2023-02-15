@@ -1,6 +1,9 @@
 import React, { FC, useContext } from 'react'
+
 import Image from 'next/image'
+
 import { MoviesContext } from 'components/Flixify'
+
 import { MovieDetailsContext } from '..'
 
 const MovieThumbnail: FC = () => {

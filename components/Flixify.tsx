@@ -1,11 +1,15 @@
-import { useState, FC, createContext } from 'react'
+import { createContext, FC, useState } from 'react'
+
 import { useQuery } from '@apollo/client'
-import { processMovie } from '../util'
-import Layout from './Layout'
-import MovieLists from './MovieLists'
-import MovieDetails from './MovieDetails'
-import Favorites from './Favorites'
+
 import { GET_ALL_MOVIES } from 'graphql/queries'
+
+import Favorites from './Favorites'
+import Layout from './Layout'
+import MovieDetails from './MovieDetails'
+import MovieLists from './MovieLists'
+import { processMovie } from '../util'
+
 
 export interface IMovie {
   id: number

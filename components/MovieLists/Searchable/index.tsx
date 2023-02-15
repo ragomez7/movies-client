@@ -1,9 +1,12 @@
-import { FC, useState, useContext } from 'react'
+import { FC, useContext, useState } from 'react'
+
 import { useQuery } from '@apollo/client'
+
 import { IMovie, MovieFromQuery, MoviesContext } from 'components/Flixify'
 import { GET_MOVIES_FROM_SEARCH } from 'graphql/queries'
-import MovieList from '../MovieList'
+
 import { processMovie } from '../../../util'
+import MovieList from '../MovieList'
 
 const SearchableList: FC = () => {
   const [searchedMovies, setSearchedMovies] = useState<Array<IMovie>>([])

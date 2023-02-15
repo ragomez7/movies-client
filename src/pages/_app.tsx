@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@apollo/client'
 import type { AppProps } from 'next/app'
+
 import '@/styles/globals.css'
 import client from '../../graphql/apollo-client'
 

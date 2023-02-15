@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import { SvgIcon } from '@mui/material'
+
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import { SvgIcon } from '@mui/material'
 
 interface MovieRatingProps {
   voteAverage: number

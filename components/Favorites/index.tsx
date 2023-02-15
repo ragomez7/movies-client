@@ -1,4 +1,6 @@
+
 import React, { FC } from 'react'
+
 import FavoriteMoviesList from './FavoriteMoviesList.tsx'
 import SectionTitle from '../SectionTitle'
 

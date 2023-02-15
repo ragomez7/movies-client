@@ -1,4 +1,5 @@
 import { FC } from 'react'
+
 import LatestReleases from './LatestReleases'
 import SearchableList from './Searchable'
 
