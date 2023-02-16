@@ -10,7 +10,7 @@ const LatestReleases = () => {
   return (
     <div className="w-full">
       <SectionTitle title="Latest Releases" size="medium" />
-      <MovieList movieArray={latestReleases} />
+      <MovieList movies={latestReleases} />
     </div>
   )
 }

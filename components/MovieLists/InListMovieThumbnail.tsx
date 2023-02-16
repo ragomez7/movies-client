@@ -10,7 +10,7 @@ const InListMovieThumbnail = ({
   movieId,
   posterPath,
 }: InListMovieThumbnailProps) => {
-  const { imagePath, setActiveMovie } = useContext(MoviesContext)
+  const { imagePath, setActiveMovieId } = useContext(MoviesContext)
   const [hover, setHover] = useState(false)
   const handleMouseEnter = () => {
     setHover(true)
@@ -22,7 +22,7 @@ const InListMovieThumbnail = ({
   return (
     <div className="w-[154px] flex-shrink-0 bg-black py-2 px-[1.5px]">
       <button
-        onClick={() => setActiveMovie(movieId || 0)}
+        onClick={() => setActiveMovieId(movieId || 0)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

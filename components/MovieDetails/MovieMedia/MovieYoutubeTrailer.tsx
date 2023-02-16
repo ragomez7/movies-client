@@ -7,7 +7,6 @@ import { MovieDetailsContext } from '..'
 
 const MovieYoutubeTrailer = () => {
   const videoOpts = {
-    height: '347px',
     width: '100%',
     playerVars: {
       origin: `http://localhost:3000/`,

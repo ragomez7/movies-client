@@ -14,7 +14,7 @@ const FavoriteMovieThumbnail = ({
   posterPath,
   movieId,
 }: FavoriteMovieThumbnailProps) => {
-  const { setActiveMovie, imagePath, favoriteMovies, setFavoriteMovies } =
+  const { setActiveMovieId, imagePath, favoriteMovies, setFavoriteMovies } =
     useContext(MoviesContext)
   const [hover, setHover] = useState(false)
   const handleMouseEnter = () => {
@@ -29,13 +29,13 @@ const FavoriteMovieThumbnail = ({
       (movie) => movie.id !== movieId,
     )
     setFavoriteMovies(filteredFavoriteMovies)
-    setActiveMovie(0)
+    setActiveMovieId(0)
     e.stopPropagation()
   }
   return (
     <button
       className="mr-4 relative"
-      onClick={() => setActiveMovie(movieId || 0)}
+      onClick={() => setActiveMovieId(movieId || 0)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

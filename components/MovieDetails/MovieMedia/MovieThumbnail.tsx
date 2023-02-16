@@ -10,7 +10,7 @@ const MovieThumbnail = () => {
   const { imagePath } = useContext(MoviesContext)
   return (
     <img
-      className="w-[231px] h-[347px]"
+      className="max-w-[100%]"
       alt="Big Movie Poster"
       src={`${imagePath}${posterPath}`}
     />

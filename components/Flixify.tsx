@@ -29,17 +29,17 @@ export interface MovieFromQuery {
   poster_path: string
 }
 
-interface MoviesContextInterface {
-  activeMovie?: number
-  setActiveMovie: (num: number) => void
+interface MoviesContext {
+  activeMovieId?: number
+  setActiveMovieId: (num: number) => void
   imagePath: string
   nowPlayingMovies: IMovie[]
   favoriteMovies: IMovie[]
   setFavoriteMovies: (favoriteMovies: IMovie[]) => void
   latestReleases: IMovie[]
 }
-export const MoviesContext = createContext<MoviesContextInterface>({
-  setActiveMovie: (num: number) => num,
+export const MoviesContext = createContext<MoviesContext>({
+  setActiveMovieId: (num: number) => num,
   imagePath: '',
   nowPlayingMovies: [],
   favoriteMovies: [],
@@ -50,7 +50,7 @@ export const MoviesContext = createContext<MoviesContextInterface>({
 const Flixify = () => {
   const [latestReleases, setLatestReleases] = useState<Array<IMovie>>([])
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Array<IMovie>>([])
-  const [activeMovie, setActiveMovie] = useState(0)
+  const [activeMovieId, setActiveMovieId] = useState(0)
   const [imagePath, setImagePath] = useState('')
   const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
   const { data } = useQuery(GET_ALL_MOVIES, {
@@ -68,8 +68,8 @@ const Flixify = () => {
   })
 
   const movieContextObject = {
-    activeMovie,
-    setActiveMovie,
+    activeMovieId,
+    setActiveMovieId,
     imagePath,
     nowPlayingMovies,
     favoriteMovies,
@@ -80,7 +80,7 @@ const Flixify = () => {
     <MoviesContext.Provider value={movieContextObject}>
       <Layout>
         {data ? <MovieLists /> : undefined}
-        <MovieDetails activeMovie={activeMovie} />
+        <MovieDetails activeMovieId={activeMovieId} />
         <Favorites />
       </Layout>
     </MoviesContext.Provider>

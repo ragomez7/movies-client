@@ -35,9 +35,9 @@ const SearchableList = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {searchedMovies.length ? (
-          <MovieList movieArray={searchedMovies} />
+          <MovieList movies={searchedMovies} />
         ) : (
-          <MovieList movieArray={nowPlayingMovies} />
+          <MovieList movies={nowPlayingMovies} />
         )}
       </div>
     </div>

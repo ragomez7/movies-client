@@ -12,23 +12,23 @@ import MovieOverview from './MovieOverview'
 import MovieRating from './MovieRating'
 import { processMovie } from '../../util'
 interface MovieDetailsProps {
-  activeMovie?: number
+  activeMovieId?: number
 }
 
-interface MovieDetailsContextInterface {
+interface MovieDetailsContext {
   posterPath: string
   videoId: string
 }
 
-interface VideoQueryResultInterface {
+interface VideoQueryResult {
   key: string
   name?: string
 }
-export const MovieDetailsContext = createContext<MovieDetailsContextInterface>({
+export const MovieDetailsContext = createContext<MovieDetailsContext>({
   posterPath: '',
   videoId: '',
 })
-const MovieDetails = ({ activeMovie }: MovieDetailsProps) => {
+const MovieDetails = ({ activeMovieId }: MovieDetailsProps) => {
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     posterPath: '',
   })
@@ -36,13 +36,13 @@ const MovieDetails = ({ activeMovie }: MovieDetailsProps) => {
   const [videoId, setVideoId] = useState('')
   useQuery(GET_MOVIE_DETAILS, {
     variables: {
-      id: activeMovie,
+      id: activeMovieId,
     },
     onCompleted: (data) => {
       const movieDetails: IMovie = processMovie(data.movieDetail)
       setMovieDetails(movieDetails)
       setPosterPath(data.movieDetail.poster_path)
-      const videoResults: Array<VideoQueryResultInterface> =
+      const videoResults: Array<VideoQueryResult> =
         data.movieDetail.videos.results
       const videoResultsArray = videoResults.map((video) => video.key)
       console.log(videoResultsArray[0])
@@ -60,10 +60,10 @@ const MovieDetails = ({ activeMovie }: MovieDetailsProps) => {
   }
   return (
     <MovieDetailsContext.Provider value={movieDetailsContextObject}>
-      <section className="row-span-1 p-3">
-        {activeMovie ? (
-          <>
-            <div className="grid grid-cols-[1fr_1fr]">
+      <section className="col-start-2 col-span-1 row-start-1 row-span-1 ">
+        {activeMovieId ? (
+          <div className="grid grid-rows-[1fr_7fr]">
+            <div className="row-start-1 row-span-1 grid grid-cols-[1fr_1fr]">
               <MovieInfo
                 title={movieDetails?.title}
                 releaseDate={movieDetails?.releaseDate}
@@ -73,15 +73,15 @@ const MovieDetails = ({ activeMovie }: MovieDetailsProps) => {
                 <MovieRating voteAverage={movieDetails?.voteAverage} />
                 <AddToFavoritesButton
                   posterPath={movieDetails?.posterPath}
-                  movieId={activeMovie}
+                  movieId={activeMovieId}
                 />
               </div>
             </div>
-            <div className="mt-3">
+            <div className="mt-1 row-start-2 row-span-1 grid grid-row-[4fr_1fr]">
               <MovieMedia />
               <MovieOverview overview={movieDetails?.overview} />
             </div>
-          </>
+          </div>
         ) : undefined}
       </section>
     </MovieDetailsContext.Provider>

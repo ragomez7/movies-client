@@ -6,14 +6,14 @@ import { IMovie } from 'components/Flixify'
 import InListMovieThumbnail from 'components/MovieLists/InListMovieThumbnail'
 
 interface MovieListProps {
-  movieArray: Array<IMovie>
+  movies: Array<IMovie>
 }
 
-const MovieList = ({ movieArray }: MovieListProps) => {
+const MovieList = ({ movies }: MovieListProps) => {
   return (
     <div className="flex overflow-x-scroll w-full">
-      {movieArray.length
-        ? movieArray.map((movie) => (
+      {movies?.length
+        ? movies.map((movie) => (
             <InListMovieThumbnail
               key={uuid()}
               movieId={movie.id}
