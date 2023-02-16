@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 interface MovieOverviewProps {
-  overview: string
+  overview?: string
 }
 
-const MovieOverview: FC<MovieOverviewProps> = ({ overview }) => {
+const MovieOverview = ({ overview }: MovieOverviewProps) => {
   return <p className="text-sm p-4 text-white">{overview}</p>
 }
 

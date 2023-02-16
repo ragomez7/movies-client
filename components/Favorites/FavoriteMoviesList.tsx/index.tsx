@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import { v4 as uuid } from 'uuid'
 
@@ -6,7 +6,7 @@ import { MoviesContext } from 'components/Flixify'
 
 import FavoriteMovieThumbnail from './FavoriteMovieThumbnail'
 
-const FavoriteMoviesList: FC = () => {
+const FavoriteMoviesList = () => {
   const { favoriteMovies } = useContext(MoviesContext)
   return (
     <div className="pl-3">

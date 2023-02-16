@@ -1,11 +1,11 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import Youtube, { YouTubeProps } from 'react-youtube'
 import { v4 as uuid } from 'uuid'
 
 import { MovieDetailsContext } from '..'
 
-const MovieYoutubeTrailer: FC = () => {
+const MovieYoutubeTrailer = () => {
   const videoOpts = {
     height: '347px',
     width: '100%',
@@ -17,10 +17,6 @@ const MovieYoutubeTrailer: FC = () => {
     event.target.pauseVideo()
   }
   const { videoId } = useContext(MovieDetailsContext)
-  // console.log(videoId)
-  useEffect(() => {
-    console.log(`videoId: ${videoId}`)
-  }, [videoId])
   return videoId ? (
     <Youtube
       key={uuid()}

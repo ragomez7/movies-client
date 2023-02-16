@@ -5,9 +5,7 @@ module.exports = {
   ],
   plugins: ['import'],
   rules: {
-    // this is for sorting WITHIN an import
     'sort-imports': ['error', {ignoreCase: true, ignoreDeclarationSort: true}],
-    // this is for sorting imports
     'import/order': [
       'error',
       {

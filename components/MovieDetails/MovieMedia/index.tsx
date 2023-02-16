@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 import MovieThumbnail from './MovieThumbnail'
 import MovieYoutubeTrailer from './MovieYoutubeTrailer'
 
-const MovieMedia: FC = () => {
+const MovieMedia = () => {
   return (
     <div className="grid grid-cols-[230px_auto]">
       <MovieThumbnail />

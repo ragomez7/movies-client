@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 import { v4 as uuid } from 'uuid'
 
@@ -9,7 +9,7 @@ interface MovieListProps {
   movieArray: Array<IMovie>
 }
 
-const MovieList: FC<MovieListProps> = ({ movieArray }) => {
+const MovieList = ({ movieArray }: MovieListProps) => {
   return (
     <div className="flex overflow-x-scroll w-full">
       {movieArray.length

@@ -6,10 +6,10 @@ import SectionTitle from '../SectionTitle'
 
 const Favorites: FC = () => {
   return (
-    <div className="row-span-1 col-start-2">
+    <section className="row-span-1 col-start-2">
       <SectionTitle title="Your Favorite Movies" size="large" />
       <FavoriteMoviesList />
-    </div>
+    </section>
   )
 }
 

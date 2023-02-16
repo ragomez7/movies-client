@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import SvgIcon from '@mui/material/SvgIcon'
@@ -8,15 +8,15 @@ import { MoviesContext } from 'components/Flixify'
 
 interface FavoriteMovieThumbnailProps {
   posterPath: string
-  movieId: number
+  movieId?: number
 }
-const FavoriteMovieThumbnail: FC<FavoriteMovieThumbnailProps> = ({
+const FavoriteMovieThumbnail = ({
   posterPath,
   movieId,
-}) => {
+}: FavoriteMovieThumbnailProps) => {
   const { setActiveMovie, imagePath, favoriteMovies, setFavoriteMovies } =
     useContext(MoviesContext)
-  const [hover, setHover] = useState<boolean>(false)
+  const [hover, setHover] = useState(false)
   const handleMouseEnter = () => {
     setHover(true)
   }
@@ -35,7 +35,7 @@ const FavoriteMovieThumbnail: FC<FavoriteMovieThumbnailProps> = ({
   return (
     <button
       className="mr-4 relative"
-      onClick={() => setActiveMovie(movieId)}
+      onClick={() => setActiveMovie(movieId || 0)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

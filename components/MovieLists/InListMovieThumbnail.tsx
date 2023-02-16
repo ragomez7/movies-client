@@ -1,19 +1,17 @@
-import React, { FC, useContext, useState } from 'react'
-
-import Image from 'next/image'
+import React, { useContext, useState } from 'react'
 
 import { MoviesContext } from 'components/Flixify'
 
 interface InListMovieThumbnailProps {
-  movieId: number
+  movieId?: number
   posterPath: string
 }
-const InListMovieThumbnail: FC<InListMovieThumbnailProps> = ({
+const InListMovieThumbnail = ({
   movieId,
   posterPath,
-}) => {
+}: InListMovieThumbnailProps) => {
   const { imagePath, setActiveMovie } = useContext(MoviesContext)
-  const [hover, setHover] = useState<boolean>(false)
+  const [hover, setHover] = useState(false)
   const handleMouseEnter = () => {
     setHover(true)
   }
@@ -24,7 +22,7 @@ const InListMovieThumbnail: FC<InListMovieThumbnailProps> = ({
   return (
     <div className="w-[154px] flex-shrink-0 bg-black py-2 px-[1.5px]">
       <button
-        onClick={() => setActiveMovie(movieId)}
+        onClick={() => setActiveMovie(movieId || 0)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

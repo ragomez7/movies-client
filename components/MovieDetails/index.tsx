@@ -1,7 +1,8 @@
-import { createContext, FC, useState } from 'react'
+import { createContext, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 
+import { IMovie } from 'components/Flixify'
 import { GET_MOVIE_DETAILS } from 'graphql/queries'
 
 import AddToFavoritesButton from './AddToFavoritesButton'
@@ -9,19 +10,11 @@ import MovieInfo from './MovieInfo'
 import MovieMedia from './MovieMedia'
 import MovieOverview from './MovieOverview'
 import MovieRating from './MovieRating'
+import { processMovie } from '../../util'
 interface MovieDetailsProps {
   activeMovie?: number
 }
 
-interface IMovieDetails {
-  poster_path: string
-  backdrop_path: string
-  title: string
-  overview: string
-  release_date: string
-  runtime: string
-  vote_average: number
-}
 interface MovieDetailsContextInterface {
   posterPath: string
   videoId: string
@@ -35,24 +28,19 @@ export const MovieDetailsContext = createContext<MovieDetailsContextInterface>({
   posterPath: '',
   videoId: '',
 })
-const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
-  const [movieDetails, setMovieDetails] = useState<IMovieDetails>({
-    poster_path: '',
-    backdrop_path: '',
-    title: '',
-    overview: '',
-    release_date: '',
-    runtime: '',
-    vote_average: 0,
+const MovieDetails = ({ activeMovie }: MovieDetailsProps) => {
+  const [movieDetails, setMovieDetails] = useState<IMovie>({
+    posterPath: '',
   })
-  const [posterPath, setPosterPath] = useState<string>('')
-  const [videoId, setVideoId] = useState<string>('')
+  const [posterPath, setPosterPath] = useState('')
+  const [videoId, setVideoId] = useState('')
   useQuery(GET_MOVIE_DETAILS, {
     variables: {
       id: activeMovie,
     },
     onCompleted: (data) => {
-      setMovieDetails(data.movieDetail)
+      const movieDetails: IMovie = processMovie(data.movieDetail)
+      setMovieDetails(movieDetails)
       setPosterPath(data.movieDetail.poster_path)
       const videoResults: Array<VideoQueryResultInterface> =
         data.movieDetail.videos.results
@@ -72,19 +60,19 @@ const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
   }
   return (
     <MovieDetailsContext.Provider value={movieDetailsContextObject}>
-      <div className="row-span-1 p-3">
+      <section className="row-span-1 p-3">
         {activeMovie ? (
           <>
             <div className="grid grid-cols-[1fr_1fr]">
               <MovieInfo
                 title={movieDetails?.title}
-                releaseDate={movieDetails?.release_date}
+                releaseDate={movieDetails?.releaseDate}
                 runtime={movieDetails?.runtime}
               />
               <div className="flex items-center justify-center w-full">
-                <MovieRating voteAverage={movieDetails?.vote_average} />
+                <MovieRating voteAverage={movieDetails?.voteAverage} />
                 <AddToFavoritesButton
-                  posterPath={movieDetails?.poster_path}
+                  posterPath={movieDetails?.posterPath}
                   movieId={activeMovie}
                 />
               </div>
@@ -95,7 +83,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ activeMovie }) => {
             </div>
           </>
         ) : undefined}
-      </div>
+      </section>
     </MovieDetailsContext.Provider>
   )
 }

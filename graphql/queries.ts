@@ -6,6 +6,7 @@ export const GET_ALL_MOVIES = gql`
       id
       title
       release_date
+      overview
       vote_average
     }
     nowPlayingMovies {
@@ -13,6 +14,7 @@ export const GET_ALL_MOVIES = gql`
       id
       title
       release_date
+      overview
       vote_average
     }
     configurations {
@@ -39,6 +41,7 @@ export const GET_MOVIES_FROM_SEARCH = gql`
 export const GET_MOVIE_DETAILS = gql`
   query GetMovieDetails($id: Int!) {
     movieDetail(id: $id) {
+      id
       poster_path
       backdrop_path
       title

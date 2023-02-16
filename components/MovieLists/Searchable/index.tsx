@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 
@@ -8,9 +8,9 @@ import { GET_MOVIES_FROM_SEARCH } from 'graphql/queries'
 import { processMovie } from '../../../util'
 import MovieList from '../MovieList'
 
-const SearchableList: FC = () => {
+const SearchableList = () => {
   const [searchedMovies, setSearchedMovies] = useState<Array<IMovie>>([])
-  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [searchTerm, setSearchTerm] = useState('')
   const { nowPlayingMovies } = useContext(MoviesContext)
   useQuery(GET_MOVIES_FROM_SEARCH, {
     variables: {

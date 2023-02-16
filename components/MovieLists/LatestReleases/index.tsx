@@ -1,11 +1,11 @@
-import { FC, useContext } from 'react'
+import { useContext } from 'react'
 
 import { MoviesContext } from 'components/Flixify'
 import SectionTitle from 'components/SectionTitle'
 
 import MovieList from '../MovieList'
 
-const LatestReleases: FC = () => {
+const LatestReleases = () => {
   const { latestReleases } = useContext(MoviesContext)
   return (
     <div className="w-full">

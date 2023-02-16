@@ -1,12 +1,11 @@
-import React, { FC, useContext } from 'react'
+import React, { useContext } from 'react'
 
-import Image from 'next/image'
 
 import { MoviesContext } from 'components/Flixify'
 
 import { MovieDetailsContext } from '..'
 
-const MovieThumbnail: FC = () => {
+const MovieThumbnail = () => {
   const { posterPath } = useContext(MovieDetailsContext)
   const { imagePath } = useContext(MoviesContext)
   return (

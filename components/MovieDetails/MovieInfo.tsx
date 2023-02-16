@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 interface MovieInfoProps {
-  title: string
-  releaseDate: string
-  runtime: string
+  title?: string
+  releaseDate?: string
+  runtime?: string
 }
-const MovieInfo: FC<MovieInfoProps> = ({ title, releaseDate, runtime }) => {
+const MovieInfo = ({ title, releaseDate, runtime }: MovieInfoProps) => {
   return (
     <div>
       <p className="text-2xl text-white">{title}</p>

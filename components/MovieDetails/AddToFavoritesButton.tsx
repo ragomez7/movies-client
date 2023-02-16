@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import StarIcon from '@mui/icons-material/Star'
 import { SvgIcon } from '@mui/material'
@@ -9,10 +9,10 @@ interface AddToFavoritesButtonProps {
   posterPath: string
   movieId: number
 }
-const AddToFavoritesButton: FC<AddToFavoritesButtonProps> = ({
+const AddToFavoritesButton = ({
   posterPath,
   movieId,
-}) => {
+}: AddToFavoritesButtonProps) => {
   const { favoriteMovies, setFavoriteMovies } = useContext(MoviesContext)
   const handleButtonOnClick = () => {
     const thisMovie: IMovie = {

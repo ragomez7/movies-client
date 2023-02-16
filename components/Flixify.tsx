@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from 'react'
+import { createContext, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 
@@ -12,9 +12,11 @@ import { processMovie } from '../util'
 
 
 export interface IMovie {
-  id: number
+  id?: number
   title?: string
+  overview?: string
   releaseDate?: string
+  runtime?: string
   voteAverage?: number
   posterPath: string
 }
@@ -23,6 +25,7 @@ export interface MovieFromQuery {
   title: string
   release_date: string
   vote_average: number
+  overview: string
   poster_path: string
 }
 
@@ -44,11 +47,11 @@ export const MoviesContext = createContext<MoviesContextInterface>({
   latestReleases: [],
 })
 
-const Flixify: FC = () => {
+const Flixify = () => {
   const [latestReleases, setLatestReleases] = useState<Array<IMovie>>([])
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Array<IMovie>>([])
-  const [activeMovie, setActiveMovie] = useState<number>(0)
-  const [imagePath, setImagePath] = useState<string>('')
+  const [activeMovie, setActiveMovie] = useState(0)
+  const [imagePath, setImagePath] = useState('')
   const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
   const { data } = useQuery(GET_ALL_MOVIES, {
     onCompleted: (data) => {

@@ -1,12 +1,13 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import { SvgIcon } from '@mui/material'
 
 interface MovieRatingProps {
-  voteAverage: number
+  voteAverage?: number
 }
-const MovieRating: FC<MovieRatingProps> = ({ voteAverage }) => {
+const MovieRating = ({ voteAverage }: MovieRatingProps) => {
+  voteAverage = voteAverage ?? 0;
   return (
     <div className="flex items-center">
       <SvgIcon className="text-[#38D16F] w-[28px] h-[28px]">
