@@ -9,7 +9,7 @@ import FavoriteMovieThumbnail from './FavoriteMovieThumbnail'
 const FavoriteMoviesList = () => {
   const { favoriteMovies } = useContext(MoviesContext)
   return (
-    <div className="pl-3 flex flex-wrap overflow-y-scroll h-[300px] w-full">
+    <div className="pl-3 flex flex-wrap overflow-y-scroll w-full max-h-[289px]">
       {favoriteMovies.length
         ? favoriteMovies.map((movie) => (
             <FavoriteMovieThumbnail

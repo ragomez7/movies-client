@@ -27,7 +27,7 @@ const AddToFavoritesButton = () => {
   }
   return (
     <button
-      className="ml-10 h-full flex flex-col items-center"
+      className="h-full flex flex-col items-center"
       onClick={handleButtonOnClick}
     >
       <p className="text-sm font-semibold text-white">Add To Favorites</p>

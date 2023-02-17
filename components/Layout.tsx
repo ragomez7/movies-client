@@ -9,7 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="text-3xl font-['Pacifico'] pl-7 pt-4 bg-gradient-to-r from-red-600 via-red-800 to-red-400 inline-block text-transparent bg-clip-text tracking-wider">
         Flixify
       </header>
-      <div className="grid grid-cols-[minmax(400px,_auto)_800px] grid-rows-[2fr_auto] h-full">
+      <div className="grid grid-cols-[minmax(400px,_auto)_800px] grid-rows-[55fr_45fr] h-full">
         {children}
       </div>
     </main>

@@ -8,7 +8,7 @@ const MovieRating = () => {
   const { voteAverage } = useContext(MovieDetailsContext)
   const voteAverageNumber = voteAverage ?? 0;
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mr-4">
       <SvgIcon className="text-[#38D16F] w-[28px] h-[28px]">
         <TrendingUpIcon />
       </SvgIcon>

@@ -8,7 +8,7 @@ const MovieInfo = () => {
     runtime,
   } = useContext(MovieDetailsContext)
   return (
-    <div>
+    <div className="mr-auto">
       <p className="text-2xl text-white">{title}</p>
       <div className="flex w-1/2 justify-around text-white">
         <p>{releaseDate}</p>

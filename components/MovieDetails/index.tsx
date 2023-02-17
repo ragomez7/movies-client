@@ -50,9 +50,7 @@ const MovieDetails = () => {
       const videoResults: Array<VideoQueryResult> =
         data.movieDetail.videos.results
       const videoResultsArray = videoResults.map((video) => video.key)
-      videoResultsArray[0]
-        ? setVideoId(videoResultsArray[0])
-        : setVideoId("")
+      videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : setVideoId('')
     },
     onError: (err) => {
       console.log(err)
@@ -66,26 +64,28 @@ const MovieDetails = () => {
     releaseDate: movieDetails?.releaseDate,
     runtime: movieDetails?.runtime,
     overview: movieDetails?.overview,
-    voteAverage: movieDetails?.voteAverage
+    voteAverage: movieDetails?.voteAverage,
   }
   return (
     <MovieDetailsContext.Provider value={movieDetailsContextObject}>
-      <section className="col-start-2 col-span-1 row-start-1 row-span-1 ">
+      <section className="col-start-2 col-span-1 row-start-1 row-span-1 grid grid-rows-[56px_auto_1px] grid-cols-[1fr_1fr]">
         {activeMovieId ? (
-          <div className="grid grid-rows-[1fr_7fr]">
-            <div className="row-start-1 row-span-1 grid grid-cols-[1fr_1fr]">
+          <>
+            <div className="col-start-1 col-span-2 row-start-1 row-span-1 flex justify-end pr-8">
               <MovieInfo />
-              <div className="flex items-center justify-center w-full">
-                <MovieRating />
-                <AddToFavoritesButton />
-              </div>
+              <MovieRating />
+              <AddToFavoritesButton />
             </div>
-            <div className="mt-1 row-start-2 row-span-1 grid grid-row-[4fr_1fr]">
+            <div className="col-start-1 col-span-2 row-start-2 row-span-1">
               <MovieMedia />
               <MovieOverview />
             </div>
-          </div>
-        ) : undefined}
+            <div className="col-start-1 col-span-2 row-start-3 row-span-1">
+           
+            </div>
+          </>
+        ) : 
+        undefined}
       </section>
     </MovieDetailsContext.Provider>
   )
