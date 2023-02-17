@@ -80,7 +80,7 @@ const Flixify = () => {
     <MoviesContext.Provider value={movieContextObject}>
       <Layout>
         {data ? <MovieLists /> : undefined}
-        <MovieDetails activeMovieId={activeMovieId} />
+        <MovieDetails />
         <Favorites />
       </Layout>
     </MoviesContext.Provider>

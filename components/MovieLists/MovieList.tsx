@@ -12,15 +12,13 @@ interface MovieListProps {
 const MovieList = ({ movies }: MovieListProps) => {
   return (
     <div className="flex overflow-x-scroll w-full">
-      {movies?.length
-        ? movies.map((movie) => (
+      {movies.map((movie) => (
             <InListMovieThumbnail
               key={uuid()}
               movieId={movie.id}
               posterPath={movie.posterPath}
             />
-          ))
-        : undefined}
+          ))}
     </div>
   )
 }

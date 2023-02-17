@@ -4,16 +4,15 @@ import StarIcon from '@mui/icons-material/Star'
 import { SvgIcon } from '@mui/material'
 
 import { IMovie, MoviesContext } from 'components/Flixify'
+import { MovieDetailsContext } from '.'
 
-interface AddToFavoritesButtonProps {
-  posterPath: string
-  movieId: number
-}
-const AddToFavoritesButton = ({
-  posterPath,
-  movieId,
-}: AddToFavoritesButtonProps) => {
+
+const AddToFavoritesButton = () => {
   const { favoriteMovies, setFavoriteMovies } = useContext(MoviesContext)
+  const {
+    movieId, 
+    posterPath
+  } = useContext(MovieDetailsContext)
   const handleButtonOnClick = () => {
     const thisMovie: IMovie = {
       id: movieId,

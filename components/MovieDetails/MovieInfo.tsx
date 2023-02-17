@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { MovieDetailsContext } from '.'
 
-interface MovieInfoProps {
-  title?: string
-  releaseDate?: string
-  runtime?: string
-}
-const MovieInfo = ({ title, releaseDate, runtime }: MovieInfoProps) => {
+const MovieInfo = () => {
+  const {
+    title,
+    releaseDate,
+    runtime,
+  } = useContext(MovieDetailsContext)
   return (
     <div>
       <p className="text-2xl text-white">{title}</p>
