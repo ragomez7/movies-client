@@ -20,7 +20,7 @@ interface MovieDetailsContext {
   videoId: string
   title?: string
   releaseDate?: string
-  runtime?: string
+  runtime?: number
   movieId?: number
   overview?: string
   voteAverage?: number
@@ -45,6 +45,7 @@ const MovieDetails = () => {
       id: activeMovieId,
     },
     onCompleted: (data) => {
+      console.log(data)
       const movieDetails: IMovie = processMovie(data.movieDetail)
       setMovieDetails(movieDetails)
       const videoResults: Array<VideoQueryResult> =
@@ -76,7 +77,7 @@ const MovieDetails = () => {
               <MovieRating />
               <AddToFavoritesButton />
             </div>
-            <div className="col-start-1 col-span-2 row-start-2 row-span-1">
+            <div className="col-start-1 col-span-2 row-start-2 row-span-1 lg:block md2:flex md2:items-center md:block sm2:flex sm2:items-start sm:block">
               <MovieMedia />
               <MovieOverview />
             </div>

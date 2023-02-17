@@ -18,14 +18,16 @@ const MovieYoutubeTrailer = () => {
   }
   const { videoId } = useContext(MovieDetailsContext)
   return videoId ? (
-    <Youtube
-      key={uuid()}
-      videoId={videoId}
-      opts={videoOpts}
-      onReady={onPlayerReady}
-    />
+    <div className="sm:hidden lg:block">
+      <Youtube
+        key={uuid()}
+        videoId={videoId}
+        opts={videoOpts}
+        onReady={onPlayerReady}
+      />
+    </div>
   ) : (
-    <div className="text-white flex items-center justify-center text-xl font-bold flex-col">
+    <div className="text-white lg:flex items-center justify-center text-xl font-bold flex-col sm:hidden">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

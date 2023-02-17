@@ -5,12 +5,9 @@ import MovieYoutubeTrailer from './MovieYoutubeTrailer'
 
 const MovieMedia = () => {
   return (
-    <div className="grid grid-cols-[2fr_6fr] items-center">
+    <div className="lg:grid lg:grid-cols-[2fr_6fr] sm:flex sm:justify-center sm:items-center">
       <MovieThumbnail />
       <MovieYoutubeTrailer />
-      {/* <div className="text-white bg-red-600 h-full">
-        s
-      </div> */}
     </div>
   )
 }

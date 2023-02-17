@@ -8,6 +8,7 @@ export const processMovie = (movie: MovieFromQuery): IMovie => {
     overview: movie.overview,
     voteAverage: movie.vote_average,
     posterPath: movie.poster_path,
+    runtime: movie.runtime,
   }
   return processedMovie
 }

@@ -5,7 +5,7 @@ import SearchableList from './Searchable'
 
 const MovieLists = () => {
   return (
-    <section className="px-4 col-start-1 col-span-1 row-start-1 row-span-2">
+    <section className="px-4 col-start-1 col-span-1 row-start-1 sm2:row-span-2 sm:row-span-1">
       <LatestReleases />
       <SearchableList />
     </section>

@@ -16,7 +16,7 @@ export interface IMovie {
   title?: string
   overview?: string
   releaseDate?: string
-  runtime?: string
+  runtime?: number
   voteAverage?: number
   posterPath: string
 }
@@ -25,6 +25,7 @@ export interface MovieFromQuery {
   title: string
   release_date: string
   vote_average: number
+  runtime: number
   overview: string
   poster_path: string
 }

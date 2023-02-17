@@ -9,7 +9,7 @@ import FavoriteMovieThumbnail from './FavoriteMovieThumbnail'
 const FavoriteMoviesList = () => {
   const { favoriteMovies } = useContext(MoviesContext)
   return (
-    <div className="pl-3 flex flex-wrap overflow-y-scroll w-full max-h-[289px]">
+    <div className="pl-3 flex flex-wrap overflow-y-scroll w-full max-h-[289px] justify-center">
       {favoriteMovies.map((movie) => (
             <FavoriteMovieThumbnail
               key={uuid()}
