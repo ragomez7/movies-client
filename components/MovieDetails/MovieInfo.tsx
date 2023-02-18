@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { parseRuntime } from '../../util'
 import { MovieDetailsContext } from '.'
 import MovieRating from './MovieRating'
 
@@ -14,13 +15,13 @@ const MovieInfo = () => {
       <p className="md:text-lg lg:text-2xl text-white truncate">{title}</p>
       <div className="flex justify-between text-white">
         <div className="flex">
-        <p>{releaseDate}</p>
-        <p className="ml-3">{runtime}</p>
+          <p>{releaseDate}</p>
+          {runtime ? (
+            <p className="ml-3 text-sm p-[1px]">{parseRuntime(runtime)}</p>
+          ) : undefined}
         </div>
         <MovieRating renderInInfo />
-
       </div>
-      
     </div>
   )
 }

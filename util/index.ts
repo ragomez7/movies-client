@@ -12,3 +12,9 @@ export const processMovie = (movie: MovieFromQuery): IMovie => {
   }
   return processedMovie
 }
+
+export const parseRuntime = (timeInMinutes: number): string => {
+  const hours = Math.floor(timeInMinutes / 60);
+  const minutes = timeInMinutes % 60;
+  return `${hours}h ${minutes}m`
+}
