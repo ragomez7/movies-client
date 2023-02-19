@@ -64,6 +64,11 @@ export const GET_MOVIE_DETAILS = gql`
           type
         }
       }
+      credits {
+        cast {
+          name
+        }
+      }
     }
   }
 `

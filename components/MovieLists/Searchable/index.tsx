@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import { IMovie, MovieFromQuery, MoviesContext } from 'components/Flixify'
 import { GET_MOVIES_FROM_SEARCH } from 'graphql/queries'
 
-import { processMovie } from '../../../util'
+import { processMovie } from '../../../utils'
 import MovieList from '../MovieList'
 
 const SearchableList = () => {

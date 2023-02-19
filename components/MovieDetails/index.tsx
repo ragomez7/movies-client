@@ -10,10 +10,13 @@ import MovieInfo from './MovieInfo'
 import MovieMedia from './MovieMedia'
 import MovieOverview from './MovieOverview'
 import MovieRating from './MovieRating'
-import { processMovie } from '../../util'
-interface MovieDetailsProps {
-  modal?: boolean
-}
+import { joinActorNames, processMovie } from '../../utils'
+import MovieThumbnail from './MovieMedia/MovieThumbnail'
+import MovieYoutubeTrailer from './MovieMedia/MovieYoutubeTrailer'
+import ExitMovieDetailsButton from './ExitMovieDetailsButton'
+import MovieTitle from './MovieInfo/MovieTitle'
+import MovieReleaseDate from './MovieInfo/MovieReleaseDate'
+import MovieRuntime from './MovieInfo/MovieRuntime'
 
 interface MovieDetailsContext {
   posterPath: string
@@ -34,11 +37,12 @@ export const MovieDetailsContext = createContext<MovieDetailsContext>({
   posterPath: '',
   videoId: '',
 })
-const MovieDetails = ({ modal }: MovieDetailsProps) => {
-  const { activeMovieId, isXs } = useContext(MoviesContext)
+const MovieDetails = () => {
+  const { activeMovieId, setActiveMovieId, isXs } = useContext(MoviesContext)
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     posterPath: '',
   })
+  const [actorNames, setActorNames] = useState('')
   const [videoId, setVideoId] = useState('')
   useQuery(GET_MOVIE_DETAILS, {
     variables: {
@@ -47,6 +51,8 @@ const MovieDetails = ({ modal }: MovieDetailsProps) => {
     onCompleted: (data) => {
       const movieDetails: IMovie = processMovie(data.movieDetail)
       setMovieDetails(movieDetails)
+      const actorNames = joinActorNames(movieDetails.cast)
+      setActorNames(actorNames)
       const videoResults: Array<VideoQueryResult> =
         data.movieDetail.videos.results
       const videoResultsArray = videoResults.map((video) => video.key)
@@ -66,14 +72,26 @@ const MovieDetails = ({ modal }: MovieDetailsProps) => {
     overview: movieDetails?.overview,
     voteAverage: movieDetails?.voteAverage,
   }
-  const displayValueInXsBreakPoint = activeMovieId && isXs ? 'grid' : 'hidden';
+
+  const displayValueInXsBreakPoint = activeMovieId && isXs ? 'grid' : 'hidden'
   if (activeMovieId && isXs) {
     return (
       <MovieDetailsContext.Provider value={movieDetailsContextObject}>
-      <section className="">
-        {activeMovieId ? (
-          <>
-            {/* <div className="">
+        <section className="">
+          {activeMovieId ? (
+            <>
+              <ExitMovieDetailsButton />
+              <MovieYoutubeTrailer />
+              <MovieTitle />
+              <MovieReleaseDate />
+              <MovieRuntime />
+              <MovieOverview />
+              <p className="text-gray-300 ml-3 mt-2">{actorNames}</p>
+              <div className="flex mt-3">
+                <MovieRating />
+                <AddToFavoritesButton />
+              </div>
+              {/* <div className="">
               <MovieInfo />
               <MovieRating />
               <AddToFavoritesButton />
@@ -83,10 +101,10 @@ const MovieDetails = ({ modal }: MovieDetailsProps) => {
               <MovieOverview />
             </div>
             <div className=""></div> */}
-          </>
-        ) : undefined}
-      </section>
-    </MovieDetailsContext.Provider>
+            </>
+          ) : undefined}
+        </section>
+      </MovieDetailsContext.Provider>
     )
   }
   return (

@@ -10,9 +10,14 @@ import Favorites from './Favorites'
 import Layout from './Layout'
 import MovieDetails from './MovieDetails'
 import MovieLists from './MovieLists'
-import { processMovie } from '../util'
+import { processMovie } from '../utils'
 
-
+interface Cast {
+  name: string
+}
+interface Credits {
+  cast: Array<Cast>
+}
 export interface IMovie {
   id?: number
   title?: string
@@ -21,6 +26,7 @@ export interface IMovie {
   runtime?: number
   voteAverage?: number
   posterPath: string
+  cast?: Array<string>
 }
 export interface MovieFromQuery {
   id: number
@@ -30,6 +36,7 @@ export interface MovieFromQuery {
   runtime: number
   overview: string
   poster_path: string
+  credits?: Credits
 }
 
 interface MoviesContext {
@@ -41,6 +48,7 @@ interface MoviesContext {
   setFavoriteMovies: (favoriteMovies: IMovie[]) => void
   latestReleases: IMovie[]
   isXs: boolean
+
 }
 export const MoviesContext = createContext<MoviesContext>({
   setActiveMovieId: (num: number) => num,
@@ -50,6 +58,7 @@ export const MoviesContext = createContext<MoviesContext>({
   setFavoriteMovies: (favoriteMovies: IMovie[]) => favoriteMovies,
   latestReleases: [],
   isXs: false,
+
 })
 
 const Flixify = () => {
@@ -59,7 +68,6 @@ const Flixify = () => {
   const [imagePath, setImagePath] = useState('')
   const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
   const isXs = useMediaQuery('(max-width: 600px)')
-  console.log(isXs)
   const { data } = useQuery(GET_ALL_MOVIES, {
     onCompleted: (data) => {
       const latestMovies: IMovie[] = data.popularMovies.map(

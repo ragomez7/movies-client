@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import TrendingUpIcon from './TrendingUpIcon'
 import { SvgIcon } from '@mui/material'
-import { MovieDetailsContext } from '.'
+import { MovieDetailsContext } from '..'
 
 interface MovieRatingProps {
   renderInInfo?: boolean
@@ -13,9 +13,7 @@ const MovieRating = ({ renderInInfo }: MovieRatingProps) => {
   if (renderInInfo) {
     return (
       <div className="sm:hidden sm2:flex lg:hidden items-center mr-4">
-        <SvgIcon className="text-[#38D16F] w-[28px] h-[28px]">
-          <TrendingUpIcon />
-        </SvgIcon>
+        <TrendingUpIcon />
         <p className="md:xl lg:text-2xl lg:w-[80px] md:w-[56px] text-white ml-2">
           {`${Math.round(voteAverageNumber * 10) / 10} / 10`}
         </p>
@@ -23,10 +21,8 @@ const MovieRating = ({ renderInInfo }: MovieRatingProps) => {
     )
   }
   return (
-    <div className="sm:hidden lg:flex items-center mr-4">
-      <SvgIcon className="text-[#38D16F] w-[28px] h-[28px]">
-        <TrendingUpIcon />
-      </SvgIcon>
+    <div className="xs:inline-flex xs:flex-col xs:h-20 xs:w-20 xs:justify-center xs:ml-2 sm:hidden lg:flex items-center sm:mr-4">
+      <TrendingUpIcon />
       <p className="md:xl lg:text-2xl lg:w-[80px] md:w-[56px] text-white ml-2">
         {`${Math.round(voteAverageNumber * 10) / 10} / 10`}
       </p>
