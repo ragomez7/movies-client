@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client'
 
 import { GET_ALL_MOVIES } from 'graphql/queries'
 
+import { useMediaQuery } from 'usehooks-ts'
+
 import Favorites from './Favorites'
 import Layout from './Layout'
 import MovieDetails from './MovieDetails'
@@ -38,6 +40,7 @@ interface MoviesContext {
   favoriteMovies: IMovie[]
   setFavoriteMovies: (favoriteMovies: IMovie[]) => void
   latestReleases: IMovie[]
+  isXs: boolean
 }
 export const MoviesContext = createContext<MoviesContext>({
   setActiveMovieId: (num: number) => num,
@@ -46,6 +49,7 @@ export const MoviesContext = createContext<MoviesContext>({
   favoriteMovies: [],
   setFavoriteMovies: (favoriteMovies: IMovie[]) => favoriteMovies,
   latestReleases: [],
+  isXs: false,
 })
 
 const Flixify = () => {
@@ -54,6 +58,8 @@ const Flixify = () => {
   const [activeMovieId, setActiveMovieId] = useState(0)
   const [imagePath, setImagePath] = useState('')
   const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
+  const isXs = useMediaQuery('(max-width: 600px)')
+  console.log(isXs)
   const { data } = useQuery(GET_ALL_MOVIES, {
     onCompleted: (data) => {
       const latestMovies: IMovie[] = data.popularMovies.map(
@@ -76,6 +82,7 @@ const Flixify = () => {
     favoriteMovies,
     setFavoriteMovies,
     latestReleases,
+    isXs,
   }
   return (
     <MoviesContext.Provider value={movieContextObject}>

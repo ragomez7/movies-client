@@ -20,14 +20,14 @@ const InListMovieThumbnail = ({
     setHover(false)
   }
   return (
-    <div className="w-[154px] flex-shrink-0 bg-black py-2 px-[1.5px]">
+    <div className="sm:w-[154px] xs:w-[120px] flex-shrink-0 bg-black p-2">
       <button
         onClick={() => setActiveMovieId(movieId || 0)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <img
-          className={`w-[134px] h-[200px] ${hover ? 'opacity-80' : undefined}`}
+          className={`${hover ? 'opacity-80' : undefined}`}
           alt="Movie Poster"
           src={`${imagePath}${posterPath}`}
           width={154}

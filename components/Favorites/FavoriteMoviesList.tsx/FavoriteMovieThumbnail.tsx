@@ -34,7 +34,7 @@ const FavoriteMovieThumbnail = ({
   }
   return (
     <button
-      className="mr-4 relative"
+      className="mt-2 mr-4 relative"
       onClick={() => setActiveMovieId(movieId || 0)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

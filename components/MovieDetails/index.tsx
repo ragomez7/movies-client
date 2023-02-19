@@ -12,7 +12,7 @@ import MovieOverview from './MovieOverview'
 import MovieRating from './MovieRating'
 import { processMovie } from '../../util'
 interface MovieDetailsProps {
-  activeMovieId?: number
+  modal?: boolean
 }
 
 interface MovieDetailsContext {
@@ -34,8 +34,8 @@ export const MovieDetailsContext = createContext<MovieDetailsContext>({
   posterPath: '',
   videoId: '',
 })
-const MovieDetails = () => {
-  const { activeMovieId } = useContext(MoviesContext)
+const MovieDetails = ({ modal }: MovieDetailsProps) => {
+  const { activeMovieId, isXs } = useContext(MoviesContext)
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     posterPath: '',
   })
@@ -45,7 +45,6 @@ const MovieDetails = () => {
       id: activeMovieId,
     },
     onCompleted: (data) => {
-      console.log(data)
       const movieDetails: IMovie = processMovie(data.movieDetail)
       setMovieDetails(movieDetails)
       const videoResults: Array<VideoQueryResult> =
@@ -67,9 +66,32 @@ const MovieDetails = () => {
     overview: movieDetails?.overview,
     voteAverage: movieDetails?.voteAverage,
   }
+  const displayValueInXsBreakPoint = activeMovieId && isXs ? 'grid' : 'hidden';
+  if (activeMovieId && isXs) {
+    return (
+      <MovieDetailsContext.Provider value={movieDetailsContextObject}>
+      <section className="">
+        {activeMovieId ? (
+          <>
+            {/* <div className="">
+              <MovieInfo />
+              <MovieRating />
+              <AddToFavoritesButton />
+            </div>
+            <div className="">
+              <MovieMedia />
+              <MovieOverview />
+            </div>
+            <div className=""></div> */}
+          </>
+        ) : undefined}
+      </section>
+    </MovieDetailsContext.Provider>
+    )
+  }
   return (
     <MovieDetailsContext.Provider value={movieDetailsContextObject}>
-      <section className="col-start-2 col-span-1 row-start-1 row-span-1 grid grid-rows-[56px_auto_1px] grid-cols-[1fr_1fr]">
+      <section className="col-start-2 col-span-1 row-start-1 row-span-1 sm:grid xs:hidden grid-rows-[56px_auto_1px] grid-cols-[1fr_1fr]">
         {activeMovieId ? (
           <>
             <div className="col-start-1 col-span-2 row-start-1 row-span-1 flex justify-end pr-8">
@@ -81,12 +103,9 @@ const MovieDetails = () => {
               <MovieMedia />
               <MovieOverview />
             </div>
-            <div className="col-start-1 col-span-2 row-start-3 row-span-1">
-           
-            </div>
+            <div className="col-start-1 col-span-2 row-start-3 row-span-1"></div>
           </>
-        ) : 
-        undefined}
+        ) : undefined}
       </section>
     </MovieDetailsContext.Provider>
   )
