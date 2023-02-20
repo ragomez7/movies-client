@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import { MoviesContext } from 'components/Flixify'
 
 import AddToFavoritesButton from '../AddToFavoritesButton'
 import ExitMovieDetailsButton from '../ExitMovieDetailsButton'

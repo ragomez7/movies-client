@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import MovieReleaseDate from './MovieReleaseDate'
 import MovieRuntime from './MovieRuntime'
 import MovieTitle from './MovieTitle'
-import { MovieDetailsContext } from '..'
 import MovieRating from '../MovieRating'
 
 const MovieInfo = () => {

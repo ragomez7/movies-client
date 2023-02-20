@@ -4,13 +4,10 @@ import { MoviesContext } from 'components/Flixify'
 
 import AddToFavoritesButton from '../AddToFavoritesButton'
 import MovieInfo from '../MovieInfo'
-import MovieCast from '../MovieInfo/MovieCast'
-import MovieDirector from '../MovieInfo/MovieDirector'
 import MovieMedia from '../MovieMedia'
-import ProductionCompanyCountry from '../MovieMedia/MovieProductionCompany/ProductionCompanyCountry'
-import ProductionCompanyName from '../MovieMedia/MovieProductionCompany/ProductionCompanyName'
 import MovieOverview from '../MovieOverview'
 import MovieRating from '../MovieRating'
+
 
 const MovieDetailsSmAndUp = () => {
   const { activeMovieId } = useContext(MoviesContext)

@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
 
-import { SvgIcon } from '@mui/material'
-
 import TrendingUpIcon from './TrendingUpIcon'
 import { MovieDetailsContext } from '..'
 
