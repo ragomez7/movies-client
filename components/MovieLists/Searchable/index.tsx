@@ -27,8 +27,7 @@ const SearchableList = () => {
     <div className="w-full">
       <div className="w-full">
         <input
-          autoFocus
-          className="bg-transparent text-lg font-bold p-4 text-white w-full"
+          className="bg-transparent text-lg font-bold p-4 text-white w-full outline-0"
           placeholder="Search Movies"
           type="text"
           value={searchTerm}

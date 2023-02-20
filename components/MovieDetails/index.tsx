@@ -34,8 +34,7 @@ export const MovieDetailsContext = createContext<MovieDetailsContext>({
   videoId: '',
 })
 const MovieDetails = () => {
-  const { activeMovieId, setActiveMovieId, isXs, imagePath } =
-    useContext(MoviesContext)
+  const { activeMovieId, isXs } = useContext(MoviesContext)
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     posterPath: '',
   })
@@ -45,13 +44,14 @@ const MovieDetails = () => {
       id: activeMovieId,
     },
     onCompleted: (data) => {
-      const movieDetails: IMovie = processMovie(data.movieDetail)
-      setMovieDetails(movieDetails)
-      console.log(movieDetails)
-      const videoResults: Array<VideoQueryResult> =
-        data.movieDetail.videos.results
-      const videoResultsArray = videoResults.map((video) => video.key)
-      videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : setVideoId('')
+      if (activeMovieId) {
+        const movieDetails: IMovie = processMovie(data.movieDetail) as IMovie
+        setMovieDetails(movieDetails)
+        const videoResults: Array<VideoQueryResult> =
+          data.movieDetail?.videos.results
+        const videoResultsArray = videoResults.map((video) => video.key)
+        videoResultsArray[0] ? setVideoId(videoResultsArray[0]) : setVideoId('')
+      }
     },
     onError: (err) => {
       console.log(err)
@@ -72,8 +72,6 @@ const MovieDetails = () => {
     genres: movieDetails?.genres,
   }
 
-  const displayValueInXsBreakPoint = activeMovieId && isXs ? 'grid' : 'hidden'
-  const ggenres = [{ name: 'Action' }, { name: 'Adventure' }]
   if (activeMovieId) {
     return (
       <MovieDetailsContext.Provider value={movieDetailsContextObject}>

@@ -8,7 +8,6 @@ import MovieMedia from '../MovieMedia'
 import MovieOverview from '../MovieOverview'
 import MovieRating from '../MovieRating'
 
-
 const MovieDetailsSmAndUp = () => {
   const { activeMovieId } = useContext(MoviesContext)
   return (

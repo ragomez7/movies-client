@@ -6,7 +6,6 @@ import MovieTitle from './MovieTitle'
 import MovieRating from '../MovieRating'
 
 const MovieInfo = () => {
-  const title = 'Inglorious Bastards'
   return (
     <div className="mr-auto flex flex-col w-5/6">
       <MovieTitle />

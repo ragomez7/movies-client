@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import AddToFavoritesButton from '../AddToFavoritesButton'
 import ExitMovieDetailsButton from '../ExitMovieDetailsButton'
 import MovieCast from '../MovieInfo/MovieCast'

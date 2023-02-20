@@ -1,15 +1,10 @@
-import React, { useContext } from 'react'
-
-import { MoviesContext } from 'components/Flixify'
+import React from 'react'
 
 import ProductionCompanyCountry from './ProductionCompanyCountry'
 import ProductionCompanyLogo from './ProductionCompanyLogo'
 import ProductionCompanyName from './ProductionCompanyName'
-import { MovieDetailsContext } from '../..'
 
 const MovieProductionCompany = () => {
-  const { productionCompany } = useContext(MovieDetailsContext)
-  const { imagePath } = useContext(MoviesContext)
   return (
     <div className="p-3">
       <ProductionCompanyName />
