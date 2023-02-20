@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import StarIcon from '@mui/icons-material/Star'
 import { SvgIcon } from '@mui/material'
 
-import { IMovie, MoviesContext } from 'components/Flixify'
+import { Movie, MoviesContext } from 'components/Flixify'
 
 import { MovieDetailsContext } from '.'
 
@@ -12,7 +12,7 @@ const AddToFavoritesButton = () => {
     useContext(MoviesContext)
   const { movieId, posterPath } = useContext(MovieDetailsContext)
   const handleButtonOnClick = () => {
-    const thisMovie: IMovie = {
+    const thisMovie: Movie = {
       id: movieId,
       posterPath,
     }

@@ -1,8 +1,8 @@
 import { MovieFromQuery } from 'components/Flixify'
-import { IMovie } from 'components/Flixify'
-export const processMovie = (movie: MovieFromQuery): IMovie | void => {
+import { Movie } from 'components/Flixify'
+export const processMovie = (movie: MovieFromQuery): Movie | void => {
   if (movie) {
-    const processedMovie: IMovie = {
+    const processedMovie: Movie = {
       id: movie.id,
       title: movie.title,
       releaseDate: movie.release_date,

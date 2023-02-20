@@ -28,7 +28,7 @@ interface Credits {
   cast: Array<Cast>
   crew: Array<Crew>
 }
-export interface IMovie {
+export interface Movie {
   id?: number
   title?: string
   overview?: string
@@ -58,10 +58,10 @@ interface MoviesContext {
   activeMovieId?: number
   setActiveMovieId: (num: number) => void
   imagePath: string
-  nowPlayingMovies: IMovie[]
-  favoriteMovies: IMovie[]
-  setFavoriteMovies: (favoriteMovies: IMovie[]) => void
-  latestReleases: IMovie[]
+  nowPlayingMovies: Movie[]
+  favoriteMovies: Movie[]
+  setFavoriteMovies: (favoriteMovies: Movie[]) => void
+  latestReleases: Movie[]
   isXs: boolean
   favoritesSectionRef?: { current: any }
   scrollToFavorites?: () => void
@@ -71,26 +71,26 @@ export const MoviesContext = createContext<MoviesContext>({
   imagePath: '',
   nowPlayingMovies: [],
   favoriteMovies: [],
-  setFavoriteMovies: (favoriteMovies: IMovie[]) => favoriteMovies,
+  setFavoriteMovies: (favoriteMovies: Movie[]) => favoriteMovies,
   latestReleases: [],
   isXs: false,
 })
 
 const Flixify = () => {
-  const [latestReleases, setLatestReleases] = useState<Array<IMovie>>([])
-  const [nowPlayingMovies, setNowPlayingMovies] = useState<Array<IMovie>>([])
+  const [latestReleases, setLatestReleases] = useState<Array<Movie>>([])
+  const [nowPlayingMovies, setNowPlayingMovies] = useState<Array<Movie>>([])
   const [activeMovieId, setActiveMovieId] = useState(0)
   const [imagePath, setImagePath] = useState('')
-  const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
+  const [favoriteMovies, setFavoriteMovies] = useState<Array<Movie>>([])
   const isXs = useMediaQuery('(max-width: 600px)')
   const favoritesSectionRef = useRef<HTMLDivElement>(null)
   const { data } = useQuery(GET_ALL_MOVIES, {
     onCompleted: (data) => {
-      const latestMovies: IMovie[] = data.popularMovies.map(
+      const latestMovies: Movie[] = data.popularMovies.map(
         (movie: MovieFromQuery) => processMovie(movie),
       )
       setLatestReleases(latestMovies)
-      const nowPlayingMovies: IMovie[] = data.nowPlayingMovies.map(
+      const nowPlayingMovies: Movie[] = data.nowPlayingMovies.map(
         (movie: MovieFromQuery) => processMovie(movie),
       )
       setNowPlayingMovies(nowPlayingMovies)

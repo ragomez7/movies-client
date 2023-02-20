@@ -2,11 +2,11 @@ import React from 'react'
 
 import { v4 as uuid } from 'uuid'
 
-import { IMovie } from 'components/Flixify'
+import { Movie } from 'components/Flixify'
 import InListMovieThumbnail from 'components/MovieLists/InListMovieThumbnail'
 
 interface MovieListProps {
-  movies: Array<IMovie>
+  movies: Array<Movie>
 }
 
 const MovieList = ({ movies }: MovieListProps) => {

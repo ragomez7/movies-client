@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 
-import { Company, IMovie, MoviesContext } from 'components/Flixify'
+import { Company, Movie, MoviesContext } from 'components/Flixify'
 import { GET_MOVIE_DETAILS } from 'graphql/queries'
 
 import MovieDetailsSmAndUp from './MovieDetailsLayouts/MovieDetailsSmAndUp'
@@ -35,7 +35,7 @@ export const MovieDetailsContext = createContext<MovieDetailsContext>({
 })
 const MovieDetails = () => {
   const { activeMovieId, isXs } = useContext(MoviesContext)
-  const [movieDetails, setMovieDetails] = useState<IMovie>({
+  const [movieDetails, setMovieDetails] = useState<Movie>({
     posterPath: '',
   })
   const [videoId, setVideoId] = useState('')
@@ -45,7 +45,7 @@ const MovieDetails = () => {
     },
     onCompleted: (data) => {
       if (activeMovieId) {
-        const movieDetails: IMovie = processMovie(data.movieDetail) as IMovie
+        const movieDetails: Movie = processMovie(data.movieDetail) as Movie
         setMovieDetails(movieDetails)
         const videoResults: Array<VideoQueryResult> =
           data.movieDetail?.videos.results
