@@ -12,4 +12,4 @@ const Document = () => {
   )
 }
 
-export default Document;
+export default Document

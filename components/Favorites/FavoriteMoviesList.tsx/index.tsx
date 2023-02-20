@@ -11,12 +11,12 @@ const FavoriteMoviesList = () => {
   return (
     <div className="flex flex-wrap overflow-y-scroll w-full xs:max-h-[425px] sm:max-h-[289px] xs:justify-evenly xs:mt-2 sm:mt-0">
       {favoriteMovies.map((movie) => (
-            <FavoriteMovieThumbnail
-              key={uuid()}
-              posterPath={movie.posterPath}
-              movieId={movie.id}
-            />
-          ))}
+        <FavoriteMovieThumbnail
+          key={uuid()}
+          posterPath={movie.posterPath}
+          movieId={movie.id}
+        />
+      ))}
     </div>
   )
 }

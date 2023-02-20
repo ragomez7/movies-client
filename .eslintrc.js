@@ -1,11 +1,11 @@
 module.exports = {
-  extends: [
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  extends: ['next/core-web-vitals', 'prettier'],
   plugins: ['import'],
   rules: {
-    'sort-imports': ['error', {ignoreCase: true, ignoreDeclarationSort: true}],
+    'sort-imports': [
+      'error',
+      { ignoreCase: true, ignoreDeclarationSort: true },
+    ],
     'import/order': [
       'error',
       {

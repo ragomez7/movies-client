@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { MovieDetailsContext } from '..'
-import MovieRating from '../MovieRating'
-import MovieTitle from './MovieTitle'
+
 import MovieReleaseDate from './MovieReleaseDate'
 import MovieRuntime from './MovieRuntime'
+import MovieTitle from './MovieTitle'
+import { MovieDetailsContext } from '..'
+import MovieRating from '../MovieRating'
 
 const MovieInfo = () => {
   const title = 'Inglorious Bastards'

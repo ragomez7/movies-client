@@ -1,8 +1,9 @@
-import { MoviesContext } from 'components/Flixify'
 import React, { useContext } from 'react'
 
+import { MoviesContext } from 'components/Flixify'
+
 const ExitMovieDetailsButton = () => {
-    const { setActiveMovieId } = useContext(MoviesContext)
+  const { setActiveMovieId } = useContext(MoviesContext)
   return (
     <div className="flex pr-3">
       <button

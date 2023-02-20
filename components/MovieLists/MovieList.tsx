@@ -13,12 +13,12 @@ const MovieList = ({ movies }: MovieListProps) => {
   return (
     <div className="flex overflow-x-scroll w-full">
       {movies.map((movie) => (
-            <InListMovieThumbnail
-              key={uuid()}
-              movieId={movie.id}
-              posterPath={movie.posterPath}
-            />
-          ))}
+        <InListMovieThumbnail
+          key={uuid()}
+          movieId={movie.id}
+          posterPath={movie.posterPath}
+        />
+      ))}
     </div>
   )
 }

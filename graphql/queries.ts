@@ -64,9 +64,16 @@ export const GET_MOVIE_DETAILS = gql`
           type
         }
       }
+      genres {
+        name
+      }
       credits {
         cast {
           name
+        }
+        crew {
+          name
+          department
         }
       }
     }

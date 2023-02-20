@@ -1,14 +1,15 @@
-import { MoviesContext } from 'components/Flixify'
 import React, { useContext } from 'react'
 
 import Youtube, { YouTubeProps } from 'react-youtube'
 import { v4 as uuid } from 'uuid'
 
+import { MoviesContext } from 'components/Flixify'
+
 import { MovieDetailsContext } from '..'
 
 const MovieYoutubeTrailer = () => {
   const { videoId } = useContext(MovieDetailsContext)
-  const { isXs } = useContext(MoviesContext);
+  const { isXs } = useContext(MoviesContext)
   const videoOpts = {
     width: '100%',
     height: isXs ? '295px' : '258px',
@@ -19,7 +20,7 @@ const MovieYoutubeTrailer = () => {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo()
   }
-  
+
   return videoId ? (
     <div className="sm:hidden lg:block w-full">
       <Youtube
