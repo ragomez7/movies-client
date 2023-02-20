@@ -81,7 +81,7 @@ const MovieDetails = () => {
       </MovieDetailsContext.Provider>
     )
   } else {
-    return <></>
+    return <div></div>
   }
 }
 

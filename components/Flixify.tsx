@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useMediaQuery } from 'usehooks-ts'
@@ -63,6 +63,8 @@ interface MoviesContext {
   setFavoriteMovies: (favoriteMovies: IMovie[]) => void
   latestReleases: IMovie[]
   isXs: boolean
+  favoritesSectionRef?: { current: any }
+  scrollToFavorites?: () => void
 }
 export const MoviesContext = createContext<MoviesContext>({
   setActiveMovieId: (num: number) => num,
@@ -81,6 +83,7 @@ const Flixify = () => {
   const [imagePath, setImagePath] = useState('')
   const [favoriteMovies, setFavoriteMovies] = useState<Array<IMovie>>([])
   const isXs = useMediaQuery('(max-width: 600px)')
+  const favoritesSectionRef = useRef<HTMLDivElement>(null)
   const { data } = useQuery(GET_ALL_MOVIES, {
     onCompleted: (data) => {
       const latestMovies: IMovie[] = data.popularMovies.map(
@@ -94,7 +97,12 @@ const Flixify = () => {
       setImagePath(`${data.configurations.images.base_url}/w342`)
     },
   })
-
+  const scrollToFavorites = () => {
+    if (isXs) {
+      setActiveMovieId(0)
+    }
+    favoritesSectionRef?.current?.scrollIntoView({ behavior: 'smooth' })
+  }
   const movieContextObject = {
     activeMovieId,
     setActiveMovieId,
@@ -104,6 +112,8 @@ const Flixify = () => {
     setFavoriteMovies,
     latestReleases,
     isXs,
+    favoritesSectionRef,
+    scrollToFavorites,
   }
   return (
     <MoviesContext.Provider value={movieContextObject}>

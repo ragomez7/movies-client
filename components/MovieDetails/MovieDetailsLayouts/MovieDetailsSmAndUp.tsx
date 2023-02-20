@@ -27,8 +27,7 @@ const MovieDetailsSmAndUp = () => {
             <MovieMedia />
             <MovieOverview />
           </div>
-          <div className="">
-          </div>
+          <div className=""></div>
         </>
       ) : undefined}
     </section>

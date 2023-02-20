@@ -8,7 +8,13 @@ import { IMovie, MoviesContext } from 'components/Flixify'
 import { MovieDetailsContext } from '.'
 
 const AddToFavoritesButton = () => {
-  const { favoriteMovies, setFavoriteMovies } = useContext(MoviesContext)
+  const {
+    favoriteMovies,
+    setFavoriteMovies,
+    isXs,
+    scrollToFavorites,
+    setActiveMovieId,
+  } = useContext(MoviesContext)
   const { movieId, posterPath } = useContext(MovieDetailsContext)
   const handleButtonOnClick = () => {
     const thisMovie: IMovie = {
@@ -20,6 +26,9 @@ const AddToFavoritesButton = () => {
     )
     if (!isMovieAlreadyInFavorites) {
       setFavoriteMovies([...favoriteMovies, thisMovie])
+      if (scrollToFavorites) {
+        scrollToFavorites()
+      }
     }
   }
   return (
