@@ -1,5 +1,6 @@
-import { MovieDetailsContext } from 'components/MovieDetails'
 import React, { useContext } from 'react'
+
+import { MovieDetailsContext } from 'components/MovieDetails'
 
 const ProductionCompanyCountry = () => {
   const { productionCompany } = useContext(MovieDetailsContext)

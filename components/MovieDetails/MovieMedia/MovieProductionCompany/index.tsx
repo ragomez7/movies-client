@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 
 import { MoviesContext } from 'components/Flixify'
 
-import { MovieDetailsContext } from '../..'
+import ProductionCompanyCountry from './ProductionCompanyCountry'
 import ProductionCompanyLogo from './ProductionCompanyLogo'
 import ProductionCompanyName from './ProductionCompanyName'
-import ProductionCompanyCountry from './ProductionCompanyCountry'
+import { MovieDetailsContext } from '../..'
 
 const MovieProductionCompany = () => {
   const { productionCompany } = useContext(MovieDetailsContext)
