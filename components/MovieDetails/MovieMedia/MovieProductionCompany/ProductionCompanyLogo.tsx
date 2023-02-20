@@ -9,7 +9,7 @@ const ProductionCompanyLogo = () => {
   return (
     <div className="bg-red-600 mt-4">
       <img
-        className="xs:max-w-[342px] xs:max-h-[130px]"
+        className="xs:max-w-auto xs:max-h-[130px]"
         alt="Production Company Logo"
         src={`${imagePath}${productionCompany?.logo_path}`}
       />
