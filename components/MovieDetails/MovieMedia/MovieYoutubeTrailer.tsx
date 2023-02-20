@@ -14,7 +14,7 @@ const MovieYoutubeTrailer = () => {
     width: '100%',
     height: isXs ? '295px' : '258px',
     playerVars: {
-      origin: `http://localhost:3000/`,
+      origin: `/`,
     },
   }
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
