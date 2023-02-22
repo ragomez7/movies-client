@@ -34,12 +34,12 @@ export const MovieDetailsContext = createContext<MovieDetailsContext>({
   videoId: '',
 })
 const MovieDetails = () => {
-  const { activeMovieId, isXs } = useContext(MoviesContext)
+  const { activeMovieId, isXs, mainQueryLoading } = useContext(MoviesContext)
   const [movieDetails, setMovieDetails] = useState<Movie>({
     posterPath: '',
   })
   const [videoId, setVideoId] = useState('')
-  useQuery(GET_MOVIE_DETAILS, {
+  const { loading } = useQuery(GET_MOVIE_DETAILS, {
     variables: {
       id: activeMovieId,
     },
@@ -72,7 +72,7 @@ const MovieDetails = () => {
     genres: movieDetails?.genres,
   }
 
-  if (activeMovieId) {
+  if (activeMovieId && !loading) {
     return (
       <MovieDetailsContext.Provider value={movieDetailsContextObject}>
         {isXs ? <MovieDetailsXs /> : <MovieDetailsSmAndUp />}
