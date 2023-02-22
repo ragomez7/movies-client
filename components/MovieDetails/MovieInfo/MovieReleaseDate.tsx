@@ -5,7 +5,9 @@ import { MovieDetailsContext } from '..'
 const MovieReleaseDate = () => {
   const { releaseDate } = useContext(MovieDetailsContext)
   return (
-    <p className="text-white sm:ml-2 xs:inline-block sm:block">{releaseDate}</p>
+    <p className="text-white text-shadow-normal sm:ml-2 xs:inline-block sm:block">
+      {releaseDate}
+    </p>
   )
 }
 

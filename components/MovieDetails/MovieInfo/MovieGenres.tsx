@@ -11,7 +11,7 @@ const MovieGenres = () => {
   const { genres } = useContext(MovieDetailsContext)
   const typedGenres = genres as Genre[]
   return (
-    <div className="text-gray-400 flex items-end">
+    <div className="text-gray-400 text-shadow-normal flex items-end">
       {typedGenres?.map((genre) => (
         <p
           key={uuid()}

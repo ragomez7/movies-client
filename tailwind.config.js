@@ -16,8 +16,11 @@ module.exports = {
       md: '900px',
       md2: '1125px',
       lg: '1200px',
-      // xl: '1536px',
+    },
+    textShadow: {
+      title: '2px 1px 2px #000',
+      normal: '2px 1px 1px #000',
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-textshadow')],
 }

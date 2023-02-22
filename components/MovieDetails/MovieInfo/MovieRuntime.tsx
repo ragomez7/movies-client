@@ -8,7 +8,7 @@ const MovieRuntime = () => {
   return (
     <>
       {runtime ? (
-        <p className="xs:ml-3 text-sm sm:p-[1px] text-white xs:inline-block sm:block">
+        <p className="xs:ml-3 text-sm sm:p-[1px] text-white text-shadow-normal xs:inline-block sm:block">
           {parseRuntime(runtime)}
         </p>
       ) : undefined}

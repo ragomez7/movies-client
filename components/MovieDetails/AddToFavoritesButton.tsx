@@ -31,7 +31,7 @@ const AddToFavoritesButton = () => {
       className="sm:h-full sm:flex sm:flex-col sm:items-center sm:justify-center xs:inline-block xs:h-24 xs:w-24 xs:ml-4"
       onClick={handleButtonOnClick}
     >
-      <p className="xs:text-sm sm:text-xs lg:text-sm font-semibold text-white">
+      <p className="xs:text-sm sm:text-xs lg:text-sm font-semibold text-white text-shadow-normal">
         Add To Favorites
       </p>
       <SvgIcon className="text-[#f5cc29] w-[28px] h-[28px] ">
